@@ -1,8 +1,10 @@
 plugins {
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -51,17 +53,11 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
-    implementation(libs.androidx.material3.android)
-    implementation(libs.androidx.navigation.compose)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
 
     //Retrofit
     implementation(libs.retrofit)
@@ -73,14 +69,11 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.google.accompanist.coil)
 
-    //Dagger - Hilt
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
-
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)

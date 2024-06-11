@@ -4,17 +4,15 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import br.com.ggperroni.pokedex.pokemonlist.PokemonListScreen
 import br.com.ggperroni.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,9 +23,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Navigation()
-                }
+                Navigation()
             }
         }
     }
@@ -40,7 +36,7 @@ class MainActivity : ComponentActivity() {
             startDestination = "pokemon_list_screen"
         ) {
             composable(route = "pokemon_list_screen") {
-                TODO()
+                PokemonListScreen(navController = navController)
             }
             composable(
                 route = "pokemon_detail_screen/{dominantColor}/{pokemonName}",
